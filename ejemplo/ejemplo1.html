@@ -1,0 +1,33 @@
+<html>
+<head>
+<script>
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {
+  xmlhttp=new XMLHttpRequest(); //Si el navegador es firefox, safari o chrome creamos un nuevo obejto XMLHttpRequest
+  }
+else
+  {
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); // Si el navegador no soporta el objeto Xmlhttprequest, creamos un objeto ActiveXObject
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200) //comprueba que la solicitud este completa 
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText; //Obtiene la respuesta como string
+    }
+  }
+xmlhttp.open("GET","hola.txt",true); // especifica el tipo de solicitud, la ubicacion del archivo y si es asincrono o no
+xmlhttp.send(); //Envia la solicitud al servidor
+}
+</script>
+</head>
+<body>
+
+<div id="myDiv"><h2>Hagamos que ajax cambie este texto</h2></div>
+<button type="button" onclick="loadXMLDoc()">Cambiar texto</button>  <!--Llamamos a la funcion loadXMLdoc() que es donde esta definido el ajax !-->
+
+</body>
+</html>

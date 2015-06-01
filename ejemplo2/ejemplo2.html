@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function loadXMLDoc(url)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {
+  xmlhttp=new XMLHttpRequest(); //Si el navegador es firefox, safari o chrome creamos un nuevo obejto XMLHttpRequest
+  }
+else
+  {
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); // Si el navegador no soporta el objeto Xmlhttprequest, creamos un objeto ActiveXObject
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200) //comprueba que la solicitud este completa 
+    {
+    document.getElementById('A1').innerHTML=xmlhttp.status;
+    document.getElementById('A2').innerHTML=xmlhttp.statusText;
+    document.getElementById('A3').innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+
+<h2>Cargar datos desde un archivo XML</h2>
+<p><b>Status:</b><span id="A1"></span></p>
+<p><b>Status text:</b><span id="A2"></span></p>
+<p><b>Response:</b><span id="A3"></span></p>
+<button onclick="loadXMLDoc('nota.xml')">Cargar archivo XML</button> <!--Llamamos a la funcion loadXMLdoc() que es donde esta definido el ajax !-->
+
+</body>
+</html>
